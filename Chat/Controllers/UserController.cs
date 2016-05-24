@@ -2,6 +2,7 @@
 
 namespace Chat.Controllers
 {
+	[AllowAnonymous]
 	public class UserController : Controller
 	{
 		public PartialViewResult LogIn()
