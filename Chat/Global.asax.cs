@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Http;
 using System.Web.Routing;
 
 namespace Chat
@@ -8,6 +9,7 @@ namespace Chat
 
 		protected void Application_Start(object sender, EventArgs e)
 		{
+			WebApiConfig.Register(GlobalConfiguration.Configuration);
 			RouteConfig.Register(RouteTable.Routes);
 		}
 
