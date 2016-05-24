@@ -4,14 +4,14 @@ namespace Chat.Controllers
 {
 	public class UserController : Controller
 	{
-		public ViewResult LogIn()
+		public PartialViewResult LogIn()
 		{
-			return View();
+			return PartialView();
 		}
 
-		public ViewResult Register()
+		public PartialViewResult Register()
 		{
-			return View();
+			return PartialView();
 		}
 	}
 }

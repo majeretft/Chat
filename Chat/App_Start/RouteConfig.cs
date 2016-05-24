@@ -7,7 +7,7 @@ namespace Chat
 	{
 		public static void Register(RouteCollection routes)
 		{
-			routes.MapRoute(null, "{controller}/{action}", new { controller = "User", action = "LogIn" });
+			routes.MapRoute(null, "{controller}/{action}", new { controller = "Chat", action = "Index" });
 		}
 	}
 }

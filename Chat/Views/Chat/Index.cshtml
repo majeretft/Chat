@@ -1,0 +1,19 @@
+﻿
+@{
+	ViewBag.Title = "Index";
+}
+
+<div class="row">
+	<div class="col-lg-3">
+		<h3>Login prewiew</h3>
+		@Html.Action("LogIn", "User")
+	</div>
+	<div class="col-lg-3">
+		<h3>Register prewiew</h3>
+		@Html.Action("Register", "User")
+	</div>
+	<div class="col-lg-3">
+		<h3>Window prewiew</h3>
+		@Html.Action("Window", "Chat")
+	</div>
+</div>

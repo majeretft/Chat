@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Http;
+using System.Web.Optimization;
 using System.Web.Routing;
 
 namespace Chat
@@ -11,6 +12,7 @@ namespace Chat
 		{
 			WebApiConfig.Register(GlobalConfiguration.Configuration);
 			RouteConfig.Register(RouteTable.Routes);
+			BundleConfig.Register(BundleTable.Bundles);
 		}
 
 		protected void Session_Start(object sender, EventArgs e)
