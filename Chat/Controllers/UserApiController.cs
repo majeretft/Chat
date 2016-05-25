@@ -8,7 +8,7 @@ namespace Chat.Controllers
 {
 	public class UserApiController : ApiController
 	{
-		[HttpPost, AllowAnonymous]
+		[HttpPost]
 		public bool LogIn([FromBody] LogInModel model)
 		{
 			var users = UsersData.Instance.Users;
@@ -18,13 +18,13 @@ namespace Chat.Controllers
 			return user != null && string.Equals(user.Password, model.Password, StringComparison.InvariantCultureIgnoreCase);
 		}
 
-		[HttpPost]
+		[HttpPost, Authorize]
 		public void LogOut()
 		{
 			throw new NotImplementedException();
 		}
 
-		[HttpPost, AllowAnonymous]
+		[HttpPost]
 		public bool Register([FromBody] RegisterModel model)
 		{
 			var users = UsersData.Instance.Users;
