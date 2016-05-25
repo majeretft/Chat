@@ -1,12 +1,12 @@
 ﻿<div class="chat chat-form">
 	<div class="form-group">
-		<input type="text" class="form-control" placeholder="Login or email">
+		<input type="text" class="form-control" placeholder="Login or email" data-bind="value: chatApp.model.login.login">
 	</div>
 	<div class="form-group">
-		<input type="text" class="form-control" placeholder="Password">
+		<input type="password" class="form-control" placeholder="Password" data-bind="value: chatApp.model.login.password">
 	</div>
 	<div class="form-group chat-form-item">
-		<button class="btn btn-link">Sign Up</button>
-		<button class="btn btn-primary">Log In</button>
+		<button class="btn btn-link" data-bind="click: chatApp.onGotoRegisterClick">Register</button>
+		<button class="btn btn-primary" data-bind="click: chatApp.onLoginClick">Log In</button>
 	</div>
 </div>

@@ -7,7 +7,7 @@ namespace Chat.Controllers
 	public class UserApiController : ApiController
 	{
 		[HttpPost, AllowAnonymous]
-		public void LogIn(LogInModel model)
+		public bool LogIn(LogInModel model)
 		{
 			throw new NotImplementedException();
 		}
@@ -19,7 +19,7 @@ namespace Chat.Controllers
 		}
 
 		[HttpPost, AllowAnonymous]
-		public bool Register(RegisterModel model)
+		public void Register(RegisterModel model)
 		{
 			throw new NotImplementedException();
 		}
