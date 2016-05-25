@@ -11,7 +11,7 @@ namespace Chat
 
 		protected void Application_Start(object sender, EventArgs e)
 		{
-			FilterConfig.Register(GlobalFilters.Filters);
+			//FilterConfig.Register(GlobalFilters.Filters);
 			WebApiConfig.Register(GlobalConfiguration.Configuration);
 			RouteConfig.Register(RouteTable.Routes);
 			BundleConfig.Register(BundleTable.Bundles);
