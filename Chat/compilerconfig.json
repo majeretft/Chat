@@ -1,6 +1,7 @@
-﻿[
+[
   {
     "outputFile": "Content/chat.css",
-    "inputFile": "Content/chat.less"
+    "inputFile": "Content/chat.less",
+    "sourceMap": false
   }
 ]
