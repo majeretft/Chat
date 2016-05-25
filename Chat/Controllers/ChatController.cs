@@ -4,7 +4,7 @@ namespace Chat.Controllers
 {
 	public class ChatController : Controller
 	{
-		[AllowAnonymous]
+		[HttpGet, AllowAnonymous]
 		public ActionResult Index()
 		{
 			return View();

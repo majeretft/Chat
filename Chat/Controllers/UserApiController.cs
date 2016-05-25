@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Http;
+using Chat.Logic;
 using Chat.Models;
 
 namespace Chat.Controllers
@@ -7,9 +9,13 @@ namespace Chat.Controllers
 	public class UserApiController : ApiController
 	{
 		[HttpPost, AllowAnonymous]
-		public bool LogIn(LogInModel model)
+		public bool LogIn([FromBody] LogInModel model)
 		{
-			throw new NotImplementedException();
+			var users = UsersData.Instance.Users;
+
+			var user = users.FirstOrDefault(x => string.Equals(x.Name, model.Login, StringComparison.InvariantCultureIgnoreCase));
+
+			return user != null && string.Equals(user.Password, model.Password, StringComparison.InvariantCultureIgnoreCase);
 		}
 
 		[HttpPost]
@@ -19,9 +25,21 @@ namespace Chat.Controllers
 		}
 
 		[HttpPost, AllowAnonymous]
-		public void Register(RegisterModel model)
+		public bool Register([FromBody] RegisterModel model)
 		{
-			throw new NotImplementedException();
+			var users = UsersData.Instance.Users;
+
+			if (users.Any(x => string.Equals(x.Name, model.Name, StringComparison.InvariantCultureIgnoreCase)))
+				return false;
+
+			users.Add(new User
+			{
+				Password = model.Password,
+				Name = model.Name,
+				Email = model.Email
+			});
+
+			return true;
 		}
 	}
 }

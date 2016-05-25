@@ -6,7 +6,7 @@ namespace Chat
 	{
 		public static void Register(HttpConfiguration configuration)
 		{
-			configuration.Routes.MapHttpRoute(null, "api/{controller}");
+			configuration.Routes.MapHttpRoute(null, "api/{controller}/{action}");
 		}
 	}
 }
