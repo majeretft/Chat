@@ -187,10 +187,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\User\LogIn.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Chat\LogIn.cshtml" />
+    <Content Include="Views\Chat\Register.cshtml" />
     <Content Include="Views\Chat\Index.cshtml" />
-    <Content Include="Views\Chat\Chat.cshtml" />
     <Content Include="Views\Chat\Window.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -210,10 +209,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\User.cs" />
+    <Compile Include="Logic\UsersData.cs" />
     <Compile Include="Models\LogInModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

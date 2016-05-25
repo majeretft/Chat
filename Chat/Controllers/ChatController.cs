@@ -4,14 +4,10 @@ namespace Chat.Controllers
 {
 	public class ChatController : Controller
 	{
+		[AllowAnonymous]
 		public ActionResult Index()
 		{
 			return View();
-		}
-
-		public PartialViewResult Window()
-		{
-			return PartialView();
 		}
 	}
 }
