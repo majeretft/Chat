@@ -5,13 +5,19 @@
 
 <div class="row">
 	<div class="col-lg-offset-9 col-lg-3">
-		<h3>Login prewiew</h3>
-		@Html.Partial("LogIn")
-		
-		<h3>Register prewiew</h3>
-		@Html.Partial("Register")
-		
-		<h3>Window prewiew</h3>
-		@Html.Partial("Window")
+		<div data-bind="visible: chatApp.model.login.isActiveView">
+			<h3>Login prewiew</h3>
+			@Html.Partial("LogIn")
+		</div>
+
+		<div data-bind="visible: chatApp.model.register.isActiveView">
+			<h3>Register prewiew</h3>
+			@Html.Partial("Register")
+		</div>
+
+		<div data-bind="visible: chatApp.model.chatWindow.isActiveView">
+			<h3>Window prewiew</h3>
+			@Html.Partial("Window")
+		</div>
 	</div>
 </div>
