@@ -25,7 +25,7 @@ namespace Chat.Controllers
 			if (user == null)
 				return false;
 
-			var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, model.Login) }, "ApplicationCookie");
+			var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, user.Name) }, "ApplicationCookie");
 
 			var ctx = Request.GetOwinContext();
 			var authManager = ctx.Authentication;
