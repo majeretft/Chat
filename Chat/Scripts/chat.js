@@ -87,6 +87,21 @@ Chat.prototype = {
 		};
 
 		me.beginAjaxRequest('UserApi/Register', registrationData, onSuccess, onError);
+	},
+
+	onLogoutClick: function (model) {
+		var me = chatApp;
+		
+		var onSuccess = function (data, textStatus, jqXhr) {
+			model.login.isActiveView(true);
+			model.chatWindow.isActiveView(false);
+		};
+
+		var onError = function (data, textStatus, jqXhr) {
+			alert('Server error!');
+		};
+
+		me.beginAjaxRequest('UserApi/LogOut', null, onSuccess, onError);
 	}
 };
 

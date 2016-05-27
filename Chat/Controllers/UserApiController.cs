@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 using Chat.Logic;
 using Chat.Models;
@@ -11,17 +13,35 @@ namespace Chat.Controllers
 		[HttpPost]
 		public bool LogIn([FromBody] LogInModel model)
 		{
+			if (!ModelState.IsValid)
+				return false;
+
 			var users = UsersData.Instance.Users;
 
-			var user = users.FirstOrDefault(x => string.Equals(x.Name, model.Login, StringComparison.InvariantCultureIgnoreCase));
+			var user = users.FirstOrDefault(x =>
+				string.Equals(x.Name, model.Login, StringComparison.InvariantCultureIgnoreCase)
+				&& string.Equals(x.Password, model.Password, StringComparison.InvariantCultureIgnoreCase));
 
-			return user != null && string.Equals(user.Password, model.Password, StringComparison.InvariantCultureIgnoreCase);
+			if (user == null)
+				return false;
+
+			var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, model.Login) }, "ApplicationCookie");
+
+			var ctx = Request.GetOwinContext();
+			var authManager = ctx.Authentication;
+
+			authManager.SignIn(identity);
+
+			return true;
 		}
 
 		[HttpPost, Authorize]
 		public void LogOut()
 		{
-			throw new NotImplementedException();
+			var ctx = Request.GetOwinContext();
+			var authManager = ctx.Authentication;
+
+			authManager.SignOut("ApplicationCookie");
 		}
 
 		[HttpPost]

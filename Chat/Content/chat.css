@@ -41,6 +41,6 @@
 .chat-window textarea {
   resize: none;
 }
-.chat-window button {
-  align-self: flex-end;
+.chat-window > div {
+  margin-top: 10px;
 }

@@ -13,7 +13,7 @@ namespace Chat
 			app.UseCookieAuthentication(new CookieAuthenticationOptions
 			{
 				AuthenticationType = "ApplicationCookie",
-				LoginPath = new PathString("/User/LogIn")
+				LoginPath = new PathString("/Chat/Index")
 			});
 		}
 	}
