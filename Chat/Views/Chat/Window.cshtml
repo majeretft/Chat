@@ -1,11 +1,8 @@
 ﻿<div class="chat chat-window">
-	<ul>
-		<li class="bg-info"><span class="user-name">Name1</span>: <span class="user-message">Some text message here ... .</span></li>
-		<li class="bg-info"><span class="user-name">Name2</span>: <span class="user-message">Some other text message here ... .</span></li>
-	</ul>
-	<textarea class="form-control"></textarea>
+	<ul></ul>
+	<textarea class="form-control" rows="2"></textarea>
 	<div>
 		<button type="button" class="btn btn-danger pull-left" data-bind="click: chatApp.onLogoutClick"><span class="glyphicon glyphicon-off"></span></button>
-		<button type="button" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-send"></span></button>
+		<button type="button" class="btn btn-primary pull-right" data-bind="click: chatApp.onSendClick"><span class="glyphicon glyphicon-send"></span></button>
 	</div>
 </div>

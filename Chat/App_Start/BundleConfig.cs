@@ -13,6 +13,7 @@ namespace Chat
 			bundles.Add(new ScriptBundle("~/js/bootstrap.js").Include("~/Scripts/bootstrap.js"));
 			bundles.Add(new ScriptBundle("~/js/knockout.js").Include("~/Scripts/knockout-{version}.js"));
 			bundles.Add(new ScriptBundle("~/js/chat.js").Include("~/Scripts/chat.js"));
+			bundles.Add(new ScriptBundle("~/js/signalr.js").Include("~/Scripts/jquery.signalR-{version}.js"));
 		}
 	}
 }

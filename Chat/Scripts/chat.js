@@ -15,10 +15,38 @@
 			isActiveView: ko.observable(false)
 		}
 	};
+
+	this.chatHub = $.connection.chatHub;
+
+	this.chatList = $('div.chat-window > ul');
 };
 
 Chat.prototype = {
 	constructor: Chat,
+
+	addChatMessage: function (name, message) {
+		if (name == null || message == null)
+			return;
+
+		function htmlEncode(value) {
+			var encodedValue = $('<div />').text(value).html();
+			return encodedValue;
+		};
+
+		this.chatList.append('<li class="bg-info"><span class="user-name">' +
+			htmlEncode(name) +
+			'</span>: <span class="user-message">' +
+			htmlEncode(message).replace(/\n/g, '<br />') +
+			'</span></li>');
+
+		var height = this.chatList[0].scrollHeight;
+		this.chatList.scrollTop(height);
+	},
+
+	onSendClick: function() {
+		var me = chatApp;
+		me.chatHub.server.send($('textarea').val());
+	},
 
 	beginAjaxRequest: function (apiFunction, data, onSuccess, onError) {
 		var url = 'api/' + (apiFunction ? apiFunction : '');
@@ -41,17 +69,20 @@ Chat.prototype = {
 			Password: model.login.password()
 		}
 
-		var onSuccess = function (data, textStatus, jqXhr) {
+		var onSuccess = function (data) {
 			if (data === true) {
 				model.login.isActiveView(false);
 				model.chatWindow.isActiveView(true);
+
+				$.connection.hub.start();
+
 				return;
 			}
 
 			alert('Incorrect login or password!');
 		};
 
-		var onError = function (data, textStatus, jqXhr) {
+		var onError = function () {
 			alert('Server error!');
 		};
 
@@ -72,7 +103,7 @@ Chat.prototype = {
 			Password: model.register.password()
 		}
 
-		var onSuccess = function (data, textStatus, jqXhr) {
+		var onSuccess = function (data) {
 			if (data === true) {
 				model.login.isActiveView(true);
 				model.register.isActiveView(false);
@@ -82,7 +113,7 @@ Chat.prototype = {
 			alert('This user name is already taken!');
 		};
 
-		var onError = function (data, textStatus, jqXhr) {
+		var onError = function () {
 			alert('Server error!');
 		};
 
@@ -92,12 +123,14 @@ Chat.prototype = {
 	onLogoutClick: function (model) {
 		var me = chatApp;
 		
-		var onSuccess = function (data, textStatus, jqXhr) {
+		var onSuccess = function () {
 			model.login.isActiveView(true);
 			model.chatWindow.isActiveView(false);
+
+			me.chatList.empty();
 		};
 
-		var onError = function (data, textStatus, jqXhr) {
+		var onError = function () {
 			alert('Server error!');
 		};
 
@@ -107,6 +140,10 @@ Chat.prototype = {
 
 $(function () {
 	window.chatApp = new Chat();
+
+	chatApp.chatHub.client.addChatMessage = function() {
+		chatApp.addChatMessage.apply(chatApp, arguments);
+	}
 
 	ko.applyBindings(chatApp.model);
 });

@@ -15,6 +15,8 @@ namespace Chat
 				AuthenticationType = "ApplicationCookie",
 				LoginPath = new PathString("/Chat/Index")
 			});
+
+			app.MapSignalR();
 		}
 	}
 }
